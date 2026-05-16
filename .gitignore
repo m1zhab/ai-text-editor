@@ -1,0 +1,96 @@
+# ------------------------------
+# OS/editor noise
+# ------------------------------
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.tmp
+*.bak
+.vscode/
+.idea/
+
+# ------------------------------
+# Node / frontend
+# ------------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+.npm/
+.yarn/
+.parcel-cache/
+.next/
+.nuxt/
+.svelte-kit/
+dist/
+build/
+coverage/
+*.tsbuildinfo
+
+# ------------------------------
+# Python / backend
+# ------------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.pyre/
+.tox/
+.nox/
+.coverage
+.coverage.*
+htmlcov/
+.eggs/
+*.egg-info/
+pip-wheel-metadata/
+
+# ------------------------------
+# Docker / containers
+# ------------------------------
+.docker/
+docker-compose.override.yml
+*.tar
+
+# ------------------------------
+# Model artifacts / ML outputs
+# ------------------------------
+models/
+checkpoints/
+artifacts/
+wandb/
+mlruns/
+*.ckpt
+*.pt
+*.pth
+*.onnx
+*.tflite
+
+# ------------------------------
+# Local databases and state
+# ------------------------------
+*.db
+*.sqlite
+*.sqlite3
+*.duckdb
+redis-data/
+postgres-data/
+mongo-data/
+
+# ------------------------------
+# Env files / secrets
+# ------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
