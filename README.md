@@ -14,4 +14,4 @@ This repository is organized into three top-level domains with clear ownership b
 ## Directory docs
 - Frontend guide: [`frontend/README.md`](./frontend/README.md)
 - Backend guide: [`backend/README.md`](./backend/README.md)
-- Deployment guide: [`deploy/README.md`](./deploy/README.md)
+- Deployment guide: [`deploy/rhel9/README.md`](./deploy/rhel9/README.md)
