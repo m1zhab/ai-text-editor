@@ -8,12 +8,12 @@ interface Props {
 
 export function ModelSelector({ models, selectedModelId, onChange }: Props) {
   return (
-    <label>
-      Model
+    <label className="field-label">
+      <span>Model profile</span>
       <select value={selectedModelId} onChange={(e) => onChange(e.target.value)}>
         {models.map((model) => (
           <option key={model.modelId} value={model.modelId}>
-            {model.profileName} ({model.modelId})
+            {model.profileName}
           </option>
         ))}
       </select>

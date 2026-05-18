@@ -1,10 +1,12 @@
 import json
+import os
 from datetime import datetime, timezone
 from pathlib import Path
 from threading import Lock
 from typing import Any
 
-AUDIT_LOG_PATH = Path("/tmp/ai_text_editor_audit.log")
+APP_ROOT = Path(__file__).resolve().parents[2]
+AUDIT_LOG_PATH = Path(os.getenv("AI_EDITOR_AUDIT_LOG", APP_ROOT / "backend" / "data" / "audit.log"))
 _LOCK = Lock()
 
 

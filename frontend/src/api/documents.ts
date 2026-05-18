@@ -4,9 +4,9 @@ import type { DocumentItem } from '../types';
 export const documentsApi = {
   list: () => http.request<DocumentItem[]>('/documents'),
   get: (id: string) => http.request<DocumentItem>(`/documents/${id}`),
-  create: (payload: Pick<DocumentItem, 'name' | 'extension' | 'content'>) =>
+  create: (payload: Pick<DocumentItem, 'name' | 'extension' | 'content'> & { folder?: string }) =>
     http.request<DocumentItem>('/documents', { method: 'POST', body: JSON.stringify(payload) }),
-  update: (id: string, payload: Partial<Pick<DocumentItem, 'name' | 'content'>>) =>
+  update: (id: string, payload: Partial<Pick<DocumentItem, 'name' | 'content' | 'folder'>>) =>
     http.request<DocumentItem>(`/documents/${id}`, { method: 'PATCH', body: JSON.stringify(payload) }),
   remove: (id: string) => http.request<{ ok: true }>(`/documents/${id}`, { method: 'DELETE' }),
   uploadAsset: (file: File) => {

@@ -1,0 +1,39 @@
+services:
+  ollama:
+    image: ollama/ollama:latest
+    restart: unless-stopped
+    ports:
+      - "11434:11434"
+    volumes:
+      - /var/lib/ai-text-editor/ollama:/root/.ollama
+      - ${AI_EDITOR_PROJECT_ROOT}/backend/model:/models:ro
+
+  backend:
+    image: ai-text-editor-backend:offline
+    restart: unless-stopped
+    environment:
+      AI_EDITOR_DATA_ROOT: /app/backend/data
+      AI_EDITOR_UPLOAD_ROOT: /app/mnt/uploads
+      OLLAMA_BASE_URL: http://ollama:11434
+      OLLAMA_MODEL: qwen2.5-3b-local
+      AI_EDITOR_EMBEDDING_PROVIDER: minilm
+      AI_EDITOR_MINILM_MODEL: /app/backend/model/all-MiniLM-L6-v2
+      AI_EDITOR_MINILM_LOCAL_ONLY: "true"
+    ports:
+      - "8000:8000"
+    volumes:
+      - /var/lib/ai-text-editor/backend-data:/app/backend/data
+      - /mnt/uploads:/app/mnt/uploads
+      - ${AI_EDITOR_PROJECT_ROOT}/backend/model:/app/backend/model:ro
+    depends_on:
+      - ollama
+
+  frontend:
+    image: ai-text-editor-frontend:offline
+    restart: unless-stopped
+    environment:
+      VITE_API_PROXY_TARGET: http://backend:8000
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend

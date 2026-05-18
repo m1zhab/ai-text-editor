@@ -1,0 +1,45 @@
+services:
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+      - ./backend/model:/models:ro
+
+  backend:
+    image: ai-text-editor-backend:offline
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      OLLAMA_BASE_URL: http://ollama:11434
+      OLLAMA_MODEL: qwen2.5-3b-local
+      AI_EDITOR_EMBEDDING_PROVIDER: minilm
+      AI_EDITOR_MINILM_MODEL: /app/backend/model/all-MiniLM-L6-v2
+      AI_EDITOR_MINILM_LOCAL_ONLY: "true"
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend/model:/app/backend/model:ro
+      - backend-data:/app/backend/data
+      - uploads:/app/mnt/uploads
+    depends_on:
+      - ollama
+
+  frontend:
+    image: ai-text-editor-frontend:offline
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    environment:
+      VITE_API_PROXY_TARGET: http://backend:8000
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+
+volumes:
+  ollama-data:
+  backend-data:
+  uploads:

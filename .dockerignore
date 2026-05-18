@@ -1,0 +1,12 @@
+.git/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+frontend/node_modules/
+frontend/dist/
+backend/data/
+backend/llama.cpp/
+backend/model/*
+!backend/model/Modelfile
+*.log

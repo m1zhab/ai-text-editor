@@ -82,6 +82,7 @@ mlruns/
 *.sqlite
 *.sqlite3
 *.duckdb
+backend/data/audit.log
 redis-data/
 postgres-data/
 mongo-data/
@@ -94,3 +95,9 @@ mongo-data/
 !.env.example
 *.pem
 *.key
+
+# ------------------------------
+# Local Codex/context notes
+# ------------------------------
+FRONTEND.md
+frontend/FRONTEND.md
