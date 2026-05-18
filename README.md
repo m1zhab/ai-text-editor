@@ -1,15 +1,19 @@
-# AI Text Editor Monorepo Skeleton
+# AI Text Editor
 
-This repository is organized into three top-level domains with clear ownership boundaries:
+AI Text Editor is an offline-first writing workspace with local RAG support. It
+provides a React/Tiptap editor for Markdown, TXT, and PDF reference workflows,
+a FastAPI backend for document storage, chunking, retrieval, and chat endpoints,
+and an Ollama-backed local Qwen runtime for generation.
 
-- [`frontend/`](./frontend/): client application code, UI assets, and frontend tooling.
-- [`backend/`](./backend/): API and service implementation layers.
-- [`deploy/`](./deploy/): deployment automation, packaging, and operations runbooks.
+The app is designed for zero-network RHEL 9 deployment: Docker Engine RPMs,
+container images, GGUF model weights, MiniLM embedding assets, and setup scripts
+can be bundled into a single offline deliverable.
 
-## Responsibility map
-- **Frontend team:** UI feature delivery and client-side build/runtime quality.
-- **Backend team:** API contracts, business logic, and service reliability.
-- **Platform/DevOps team:** environment promotion, release packaging, and deployment safety.
+## Project layout
+
+- [`frontend/`](./frontend/): React editor UI, file tree, AI panel, and client build tooling.
+- [`backend/`](./backend/): FastAPI APIs, SQLite persistence, ingestion, chunking, retrieval, embeddings, and Ollama inference calls.
+- [`deploy/rhel9/`](./deploy/rhel9/): offline RHEL 9 packaging and setup flow.
 
 ## Directory docs
 - Frontend guide: [`frontend/README.md`](./frontend/README.md)
